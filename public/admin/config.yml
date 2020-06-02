@@ -10,7 +10,7 @@ public_folder: /images/uploads
 collections:
   - name: "blog"
     label: "Blog"
-    folder: "blog"
+    folder: "content/blog"
     create: true
     slug: "test/{{year}}-{{month}}-{{day}}_{{title}}_{{some_other_field}}"
     fields:
