@@ -10,6 +10,8 @@ collections:
     label: "Blog"
     folder: "content/blog"
     create: true
+    slug: "{{title}}--{{date}}"
+    preview_path: "blog/{{fields.slug}}"
     fields:
       - {
           label: "Template Key",
