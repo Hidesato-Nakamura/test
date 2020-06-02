@@ -19,7 +19,7 @@ collections:
           widget: "hidden",
           default: "blog-post",
         }
-      - { label: "Title", name: "title", widget: "string", default: userName }
+      - { label: "Title", name: "title", widget: "string" }
       - { label: "", name: "discription", widget: "string" }
       - { label: "Contributor", name: "contributor", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
