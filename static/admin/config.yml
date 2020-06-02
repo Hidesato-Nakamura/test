@@ -12,7 +12,7 @@ collections:
     label: "Blog"
     folder: "content/blog"
     create: true
-    slug: "test/{{year}}-{{month}}-{{day}}_{{title}}_{{some_other_field}}"
+    slug: "{{title}}/{{year}}-{{month}}-{{day}}_{{title}}_{{some_other_field}}"
     fields:
       - {
           label: "Template Key",
