@@ -20,8 +20,8 @@ collections:
           widget: "hidden",
           default: "blog-post",
         }
-      - { label: "Slug", name: "slug", widget: "string" }
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Title", name: "slug", widget: "string" }
+      - { label: "Discription", name: "title", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
       - { label: "Tags", name: "tags", widget: "list" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
