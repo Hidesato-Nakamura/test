@@ -1,9 +1,7 @@
 backend:
   name: git-gateway
   branch: master
-
-publish_mode: editorial_workflow
-
+locale: "ja"
 media_folder: static/images/uploads
 public_folder: /images/uploads
 
@@ -12,7 +10,8 @@ collections:
     label: "Blog"
     folder: "content/blog"
     create: true
-    slug: "{{title}}/{{year}}-{{month}}-{{day}}_{{title}}_{{some_other_field}}"
+    slug: "{{title}}--{{date}}"
+    preview_path: "blog/{{fields.slug}}"
     fields:
       - {
           label: "Template Key",
@@ -20,8 +19,9 @@ collections:
           widget: "hidden",
           default: "blog-post",
         }
-      - { label: "Title", name: "slug", widget: "string" }
-      - { label: "Discription", name: "title", widget: "string" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Discription", name: "discription", widget: "string" }
+      - { label: "Contributor", name: "contributor", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
       - { label: "Tags", name: "tags", widget: "list" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
