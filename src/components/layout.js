@@ -16,6 +16,7 @@ const Layout = ({ location, title, children }) => {
           marginTop: 0,
         }}
       >
+        <img alt="" src="/images/uploads/lion-5218109_1280.jpg"></img>
         <Link
           style={{
             boxShadow: `none`,

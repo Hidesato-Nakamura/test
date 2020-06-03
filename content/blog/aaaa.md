@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
-title: aaaa
-discription: aaaaa
+title: ppppapa
+discription: this is a discription
 tags:
   - aaa
   - aaa
@@ -9,4 +9,5 @@ tags:
   - ""
 date: 2020-06-02T09:16:39.445Z
 ---
-aaaa
+
+this is main text.

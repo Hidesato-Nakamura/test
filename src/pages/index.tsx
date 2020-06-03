@@ -36,12 +36,16 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title="All posts" />
+      <SEO title="Home" />
+      <Link to="/admin/">login</Link>
       <Bio />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         return (
-          <article key={node.fields.slug}>
+          <article
+            key={node.fields.slug}
+            style={{ backgroundColor: `#00ffff` }}
+          >
             <header>
               <h3
                 style={{
@@ -60,6 +64,7 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
                   __html: node.frontmatter.description || node.excerpt,
                 }}
               />
+              <p>is section</p>
             </section>
           </article>
         )
