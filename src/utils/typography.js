@@ -11,8 +11,14 @@ Wordpress2016.overrideThemeStyles = () => {
 
 delete Wordpress2016.googleFonts
 
-const typography = new Typography(Wordpress2016)
-
+// ここを書き換えて全体の大まかなテーマを決める
+// const typography = new Typography(Wordpress2016)
+const typography = new Typography({
+  baseFontSize: "18px",
+  baseLineHeight: 1.666,
+  headerFontFamily: ["sans-serif"],
+  bodyFontFamily: ["sans-serif"],
+})
 // Hot reload typography in development.
 if (process.env.NODE_ENV !== `production`) {
   typography.injectStyles()

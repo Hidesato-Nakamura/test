@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
 title: ppppapa
-discription: this is a discription
+description: this is a description
 tags:
   - aaa
   - aaa

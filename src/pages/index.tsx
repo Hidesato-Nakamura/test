@@ -7,6 +7,8 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
 
+import Card from "../components/card"
+
 type Data = {
   site: {
     siteMetadata: {
@@ -37,35 +39,45 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title="Home" />
-      <Link to="/admin/">login</Link>
-      <Bio />
+      {/* <Link to="/admin/">login</Link> */}
+      {/* <Bio /> */}
+      <h1>新着記事</h1>
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         return (
-          <article
-            key={node.fields.slug}
-            style={{ backgroundColor: `#00ffff` }}
-          >
-            <header>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+          <article key={node.fields.slug} style={{ marginBottom: "40px" }}>
+            <h3
+              style={{
+                marginBottom: rhythm(1 / 4),
+              }}
+            >
+              {/* <Link
+                  style={{
+                    boxShadow: `none`,
+                    textDecoration: `none`,
+                    color: `#222222`,
+                  }}
+                  to={node.fields.slug}
+                >
                   {title}
-                </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-            </header>
-            <section>
+                </Link> */}
+              <Card
+                title={node.frontmatter.title}
+                description={node.frontmatter.description}
+                date={node.frontmatter.date}
+                slug={node.fields.slug}
+              />
+            </h3>
+            {/* <small>{node.frontmatter.date}</small> */}
+
+            {/* <section>
               <p
                 dangerouslySetInnerHTML={{
                   __html: node.frontmatter.description || node.excerpt,
                 }}
               />
               <p>is section</p>
-            </section>
+            </section> */}
           </article>
         )
       })}
