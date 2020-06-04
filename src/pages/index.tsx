@@ -23,6 +23,7 @@ type Data = {
           title: string
           date: string
           description: string
+          featuredimage: String
         }
         fields: {
           slug: string
@@ -66,6 +67,7 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
                 description={node.frontmatter.description}
                 date={node.frontmatter.date}
                 slug={node.fields.slug}
+                featuredImageSrc={node.frontmatter.featuredimage}
               />
             </h3>
             {/* <small>{node.frontmatter.date}</small> */}
@@ -108,6 +110,7 @@ export const pageQuery = graphql`
             date(formatString: "YY/MM/DD")
             title
             description
+            featuredimage
           }
         }
       }

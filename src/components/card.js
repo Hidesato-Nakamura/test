@@ -1,17 +1,13 @@
 import React from "react"
 import { Link } from "gatsby"
 
-const Card = ({ title, description, date, slug }) => {
+const Card = ({ title, description, date, slug, featuredImageSrc }) => {
   console.log(date)
   let card = (
     <Link to={slug} style={{ textDecoration: "none" }}>
       <section className="card">
         <div className="card-img-block">
-          <img
-            className="card-img"
-            src="./images/uploads/uganda-5005579_1920.jpg"
-            alt=""
-          />
+          <img className="card-img" src={featuredImageSrc} alt="" />
         </div>
 
         <div className="card-content">
