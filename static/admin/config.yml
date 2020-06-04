@@ -19,9 +19,10 @@ collections:
           widget: "hidden",
           default: "blog-post",
         }
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "string" }
-      - { label: "Contributor", name: "contributor", widget: "string" }
-      - { label: "Body", name: "body", widget: "markdown" }
-      - { label: "Tags", name: "tags", widget: "list" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "タイトル", name: "title", widget: "string" }
+      - { label: "概要", name: "description", widget: "string" }
+      - { label: "投稿者", name: "contributor", widget: "string" }
+      - { label: "本文", name: "body", widget: "markdown" }
+      - { label: "カテゴリー", name: "tags", widget: "list" }
+      - { label: "投稿時刻", name: "date", widget: "datetime" }
+      - { label: "アイキャッチイメージ", name: "featuredimage", widget: image }

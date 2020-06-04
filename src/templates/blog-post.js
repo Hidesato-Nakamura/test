@@ -10,7 +10,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata.title
   const { previous, next } = pageContext
-
+  let tags = post.frontmatter.tags
   return (
     <Layout location={location} title={siteTitle}>
       <SEO
@@ -43,37 +43,55 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             marginBottom: rhythm(1),
           }}
         />
-        <footer style={{ backgroundColor: `#ff0000` }}>
-          footer test
-          {/* <Bio /> */}
-        </footer>
+        <div>
+          {tags && tags.length ? (
+            <div style={{ marginTop: `4rem` }}>
+              <h4>カテゴリ</h4>
+              <ul className="taglist">
+                {tags.map(tag => (
+                  <li
+                    style={{
+                      padding: "0 2rem 1rem 0",
+                      marginBottom: "1.5rem",
+                      marginTop: "0",
+                    }}
+                    key={tag + `tag`}
+                  >
+                    {tag}
+                    {/* <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link> */}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+
+          <Bio />
+        </div>
       </article>
 
-      <nav>
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
-            {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
-              </Link>
-            )}
-          </li>
-          <li>
-            {next && (
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
-              </Link>
-            )}
-          </li>
-        </ul>
+      <nav
+        style={{
+          flexWrap: `wrap`,
+          listStyle: `none`,
+          padding: 0,
+          marginBottom: 200,
+        }}
+      >
+        <div style={{ float: "left" }}>
+          {next && (
+            <Link to={next.fields.slug} rel="next">
+              {/* {next.frontmatter.title} → */}← next
+            </Link>
+          )}
+        </div>
+        <div style={{ float: "right" }}>
+          {previous && (
+            <Link to={previous.fields.slug} rel="prev">
+              {/* ← {previous.frontmatter.title} */}
+              prev →
+            </Link>
+          )}
+        </div>
       </nav>
     </Layout>
   )
@@ -94,8 +112,9 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
+        date(formatString: "YY/MM/DD")
         description
+        tags
       }
     }
   }

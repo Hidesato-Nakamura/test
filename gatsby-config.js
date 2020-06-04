@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `TITLE`,
     author: {
-      name: `Hidesato Nakamura`,
+      name: `テスト`,
       summary: `who lives and works in Tomioka city building useful things.`,
     },
     description: `This is not a function.`,

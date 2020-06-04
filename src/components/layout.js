@@ -4,6 +4,7 @@ import { Link } from "gatsby"
 import Banner from "../components/banner"
 import Header from "../components/header"
 import CategoryCard from "../components/categoryCard"
+import PopularCard from "../components/popularCard"
 
 const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
@@ -43,13 +44,13 @@ const Layout = ({ location, title, children }) => {
         >
           <Banner />
           <CategoryCard />
+          <PopularCard />
         </div>
       </main>
 
       <footer>
-        © {new Date().getFullYear()}, footer
-        {` `}
-        <a href="https://www.gatsbyjs.org">Gatsby</a>
+        <div>© {new Date().getFullYear()} footer</div>
+        {/* <a href="https://www.gatsbyjs.org">Gatsby</a> */}
       </footer>
     </div>
   )
