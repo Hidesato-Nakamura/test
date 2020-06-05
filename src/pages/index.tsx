@@ -1,4 +1,5 @@
 // Gatsby supports TypeScript natively!
+//ホームです。
 import React from "react"
 import { PageProps, Link, graphql } from "gatsby"
 
