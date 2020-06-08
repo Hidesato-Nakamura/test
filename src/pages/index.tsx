@@ -9,6 +9,7 @@ import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
 
 import Card from "../components/card"
+import PageNation from "../components/pagination"
 
 type Data = {
   site: {
@@ -63,6 +64,7 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
           </article>
         )
       })}
+      <PageNation />
     </Layout>
   )
 }

@@ -1,6 +1,10 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
+import PageNation from "../components/pagination"
+import Card from "../components/card"
+
+import { rhythm } from "../utils/typography"
 
 const BlogList = (data, pageContext, location) => {
   console.log(data)
@@ -8,10 +12,28 @@ const BlogList = (data, pageContext, location) => {
   const siteTitle = "bloglist"
   return (
     <Layout location={location} title={siteTitle}>
+      <h5>* サンプルのダミーが少ないので２枚ずつページネーションしています.</h5>
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
-        return <div key={node.fields.slug}>{title}</div>
+        return (
+          <article key={node.fields.slug} style={{ marginBottom: "40px" }}>
+            <h3
+              style={{
+                marginBottom: rhythm(1 / 4),
+              }}
+            >
+              <Card
+                title={node.frontmatter.title}
+                description={node.frontmatter.description}
+                date={node.frontmatter.date}
+                slug={node.fields.slug}
+                featuredImageSrc={node.frontmatter.featuredimage}
+              />
+            </h3>
+          </article>
+        )
       })}
+      <PageNation />
     </Layout>
   )
 }
@@ -31,7 +53,10 @@ export const blogListQuery = graphql`
             slug
           }
           frontmatter {
+            date(formatString: "YY/MM/DD")
             title
+            description
+            featuredimage
           }
         }
       }
