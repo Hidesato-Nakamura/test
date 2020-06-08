@@ -32,7 +32,7 @@ exports.createPages = async ({ graphql, actions }) => {
     throw result.errors
   }
 
-  // Create blog posts pages.
+  // ブログ記事本体
   const posts = result.data.allMarkdownRemark.edges
 
   posts.forEach((post, index) => {
@@ -50,7 +50,7 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
-  //タグページ生成。全タグを検索した後、被りがないように削除をする。
+  //タグページ生成。全タグを検索した後、被りがないように削除をしたりなんやかんや。
   let tags = []
   posts.forEach(edge => {
     if (_.get(edge, `node.frontmatter.tags`)) {
@@ -66,6 +66,23 @@ exports.createPages = async ({ graphql, actions }) => {
       component: path.resolve(`./src/templates/tags.js`),
       context: {
         tag: tag,
+      },
+    })
+  })
+
+  //ページネーション後のページ生成。
+  const postsPerPage = 2
+  const numPages = Math.ceil(posts.length / postsPerPage)
+  console.log(`numPages=${numPages}`)
+  Array.from({ length: numPages }).forEach((_, i) => {
+    createPage({
+      path: i === 0 ? `/blog/` : `/blog/${i + 1}`,
+      component: path.resolve("./src/templates/blog-list-template.js"),
+      context: {
+        limit: postsPerPage,
+        skip: i * postsPerPage,
+        numPages,
+        currentPage: i + 1,
       },
     })
   })

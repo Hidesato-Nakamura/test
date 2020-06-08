@@ -49,17 +49,19 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
               <h4>カテゴリ</h4>
               <ul className="taglist">
                 {tags.map(tag => (
-                  <li
-                    style={{
-                      padding: "0 2rem 1rem 0",
-                      marginBottom: "1.5rem",
-                      marginTop: "0",
-                    }}
-                    key={tag + `tag`}
-                  >
-                    {tag}
-                    {/* <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link> */}
-                  </li>
+                  <Link to={`/tags/${tag}`}>
+                    <li
+                      style={{
+                        padding: "0 2rem 1rem 0",
+                        marginBottom: "1.5rem",
+                        marginTop: "0",
+                      }}
+                      key={tag + `tag`}
+                    >
+                      {tag}
+                      {/* <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link> */}
+                    </li>
+                  </Link>
                 ))}
               </ul>
             </div>

@@ -16,7 +16,7 @@ const Layout = ({ location, title, children }) => {
       }}
     >
       <header>
-        <Header title={title} path={location.pathname} rootPath={rootPath} />
+        <Header />
       </header>
       <main
         style={{

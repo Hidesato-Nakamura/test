@@ -2,7 +2,7 @@ import React from "react"
 import { rhythm, scale } from "../utils/typography"
 import { Link } from "gatsby"
 
-const Header = ({ title, path, rootPath }) => {
+const Header = () => {
   let header
 
   //   if (path === rootPath) {
@@ -39,27 +39,6 @@ const Header = ({ title, path, rootPath }) => {
       {/* <p style={{ backgroundColor: "#ffffff" }}>home blog</p> */}
     </h1>
   )
-  //   } else {
-  //     header = (
-  //       <h3
-  //         style={{
-  //           fontFamily: `Montserrat, sans-serif`,
-  //           marginTop: 0,
-  //         }}
-  //       >
-  //         <Link
-  //           style={{
-  //             boxShadow: `none`,
-  //             color: `inherit`,
-  //             textDecoration: `none`,
-  //           }}
-  //           to={`/`}
-  //         >
-  //           {title}
-  //         </Link>
-  //       </h3>
-  //     )
-  //   }
 
   return header
 }

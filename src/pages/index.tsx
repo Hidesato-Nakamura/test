@@ -45,7 +45,6 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
       {/* <Bio /> */}
       <h1>新着記事</h1>
       {posts.map(({ node }) => {
-        const title = node.frontmatter.title || node.fields.slug
         return (
           <article key={node.fields.slug} style={{ marginBottom: "40px" }}>
             <h3
@@ -53,16 +52,6 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
                 marginBottom: rhythm(1 / 4),
               }}
             >
-              {/* <Link
-                  style={{
-                    boxShadow: `none`,
-                    textDecoration: `none`,
-                    color: `#222222`,
-                  }}
-                  to={node.fields.slug}
-                >
-                  {title}
-                </Link> */}
               <Card
                 title={node.frontmatter.title}
                 description={node.frontmatter.description}
@@ -71,16 +60,6 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
                 featuredImageSrc={node.frontmatter.featuredimage}
               />
             </h3>
-            {/* <small>{node.frontmatter.date}</small> */}
-
-            {/* <section>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: node.frontmatter.description || node.excerpt,
-                }}
-              />
-              <p>is section</p>
-            </section> */}
           </article>
         )
       })}

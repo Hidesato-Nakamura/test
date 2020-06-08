@@ -55,6 +55,7 @@ const TestTemplate = ({ data, pageContext, location }) => {
   console.log(data)
   return (
     <Layout location={location} title={`Tags | ${title}`}>
+      <SEO title={tag} />
       <h1>
         {tag}：検索結果 {data.allMarkdownRemark.totalCount}件
       </h1>
