@@ -3,7 +3,7 @@ import { kebabCase } from "lodash"
 import { Link } from "gatsby"
 
 const CategoryCard = () => {
-  let tags = ["aaa", "bbb", "ccc"]
+  let tags = ["aaa", "bbb", "ccc", "ddd", "ライオン", "富士山"]
   const categoryCard = (
     <section className="category-card">
       <p

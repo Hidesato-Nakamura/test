@@ -3,6 +3,7 @@ import { kebabCase } from "lodash"
 import { Helmet } from "react-helmet"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
+import SEO from "../components/SEO"
 
 // const TagsPage = ({
 //   data: {
@@ -40,23 +41,55 @@ import Layout from "../components/layout"
 //   </Layout>
 // )
 
-const TestTemplate = ({ data, pageContext }) => {
-  return <section>this is a tags test</section>
+const TestTemplate = ({ data, pageContext, location }) => {
+  const posts = data.allMarkdownRemark.edges
+  const title = data.site.siteMetadata.title
+  const tag = pageContext.tag
+  const postLinks = posts.map(post => (
+    <li key={post.node.fields.slug}>
+      <Link to={post.node.fields.slug}>
+        <h2 className="is-size-2">{post.node.frontmatter.title}</h2>
+      </Link>
+    </li>
+  ))
+  console.log(data)
+  return (
+    <Layout location={location} title={`Tags | ${title}`}>
+      <h1>
+        {tag}：検索結果 {data.allMarkdownRemark.totalCount}件
+      </h1>
+      <ul>{postLinks}</ul>
+      <p>
+        <Link to="/tags/">Browse all tags</Link>
+      </p>
+    </Layout>
+  )
 }
 
 export default TestTemplate
 
 export const tagPageQuery = graphql`
-  query TagsQuery {
+  query tagPageQuery($tag: String) {
     site {
       siteMetadata {
         title
       }
     }
-    allMarkdownRemark(limit: 1000) {
-      group(field: frontmatter___tags) {
-        fieldValue
-        totalCount
+    allMarkdownRemark(
+      limit: 1000
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { frontmatter: { tags: { in: [$tag] } } }
+    ) {
+      totalCount
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+          }
+        }
       }
     }
   }

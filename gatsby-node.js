@@ -50,16 +50,22 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
-  //タグページ
-  let tags = ["aaa", "bbb", "ccc"]
+  //タグページ生成。全タグを検索した後、被りがないように削除をする。
+  let tags = []
+  posts.forEach(edge => {
+    if (_.get(edge, `node.frontmatter.tags`)) {
+      tags = tags.concat(edge.node.frontmatter.tags)
+    }
+  })
+  tags = _.uniq(tags)
   // let tagPath = path.resolve(`/tags/${tag}`)
   tags.forEach(tag => {
-    let tagPath = path.resolve(`/tags/${tag}`)
+    const tagPath = path.resolve(`/tags/${tag}`)
     createPage({
       path: tagPath,
-      component: path.resolve(`/src/templates/tags.js`),
+      component: path.resolve(`./src/templates/tags.js`),
       context: {
-        id: tag,
+        tag: tag,
       },
     })
   })
