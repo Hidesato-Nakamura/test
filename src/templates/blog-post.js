@@ -11,6 +11,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
   const siteTitle = data.site.siteMetadata.title
   const { previous, next } = pageContext
   const tags = post.frontmatter.tags
+  console.log(data)
   return (
     <Layout location={location} title={siteTitle}>
       <SEO
@@ -37,6 +38,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             {post.frontmatter.date}
           </p>
         </header>
+        <p>閲覧数：{data.pageViews.totalCount}</p>
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
           style={{
@@ -118,6 +120,9 @@ export const pageQuery = graphql`
         description
         tags
       }
+    }
+    pageViews(id: { eq: $slug }) {
+      totalCount
     }
   }
 `

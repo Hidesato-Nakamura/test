@@ -29,15 +29,9 @@ module.exports = {
     {
       resolve: `gatsby-source-google-analytics-reporting-api`,
       options: {
-        // 「サービス アカウント」のメールアドレス
         email: process.env.CLIENT_EMAIL,
-        // 「サービス アカウント」生成時にダウンロードできる json データに含まれる
-        // `private_key` から生成される公開鍵を秘密鍵にがっちゃんこしてまとめ、扱いやすいよう base64 で
-        // あらかじめエンコードしたものを環境変数として渡して、ビルド時にデコードする。
-        key: Buffer.from(process.env.PRIVATE_KEY, "base64").toString(),
-        // Google Analytics のページから取得
+        key: process.env.PRIVATE_KEY.replace(/\\n/g, "\n"),
         viewId: `220318115`,
-        // 使い始めの日を指定
         startDate: `2020-06-01`,
       },
     },

@@ -37,13 +37,13 @@ const CategoryCardContents = ({ data }) => {
     }
   })
   tags = _.uniq(tags)
-  console.log(tags)
+  // console.log(tags)
   let tagsList = []
 
   tags.forEach(tag => {
     let count = 0
     posts.forEach(edge => {
-      console.log(`${tag}:${edge.node.frontmatter.tags}`)
+      // console.log(`${tag}:${edge.node.frontmatter.tags}`)
       edge.node.frontmatter.tags.forEach(_tag => {
         if (_tag == tag) {
           ++count
@@ -55,7 +55,7 @@ const CategoryCardContents = ({ data }) => {
       totalCount: count,
     })
   })
-  console.log(tagsList)
+  // console.log(tagsList)
 
   const categoryCardContents = (
     <section className="category-card">

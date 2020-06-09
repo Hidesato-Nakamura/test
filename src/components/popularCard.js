@@ -1,15 +1,16 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { Link, graphql, StaticQuery } from "gatsby"
 
-// const popularCardQuery = graphql`
-//   query popularCardQuery {
-//     pageViews(id: { eq: "/2020/02/14/gatsby-published-unpublished/" }) {
-//       totalCount
-//     }
-//   }
-// `
+const popularCardQuery = graphql`
+  query popularCardQuery {
+    pageViews {
+      totalCount
+    }
+  }
+`
 
-const PopularCard = () => {
+const PopularCardContents = ({ data }) => {
+  console.log(data)
   const pc = (
     <section className="popular-card">
       <p
@@ -24,4 +25,14 @@ const PopularCard = () => {
   return pc
 }
 
-export default PopularCard
+export default function PopularCard() {
+  // let tags = ["aaa", "bbb", "ccc", "ddd", "ライオン", "富士山"]
+  // console.log(`data=${data}`)
+  const popularCard = (
+    <StaticQuery
+      query={popularCardQuery}
+      render={data => <PopularCardContents data={data} />}
+    />
+  )
+  return popularCard
+}
