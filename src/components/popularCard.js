@@ -3,14 +3,49 @@ import { Link, graphql, StaticQuery } from "gatsby"
 
 const popularCardQuery = graphql`
   query popularCardQuery {
-    pageViews {
-      totalCount
+    allPageViews(sort: { order: DESC, fields: totalCount }) {
+      edges {
+        node {
+          totalCount
+          path
+        }
+      }
+    }
+    allMarkdownRemark {
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+          }
+        }
+      }
     }
   }
 `
 
 const PopularCardContents = ({ data }) => {
   console.log(data)
+  const views = data.allPageViews.edges
+  const posts = data.allMarkdownRemark.edges
+  let postResults = []
+  views.forEach(edge => {
+    posts.forEach(post => {
+      //全ページから投稿された記事を抽出
+      if (post.node.fields.slug == edge.node.path) {
+        // console.log(`slug=${post.node.fields.slug}`)
+        // console.log(`path=${edge.node.path}`)
+        postResults.push({
+          title: post.node.frontmatter.title,
+          slug: post.node.fields.slug,
+          totalCount: edge.node.totalCount,
+        })
+      }
+    })
+  })
+  console.log(postResults)
   const pc = (
     <section className="popular-card">
       <p
@@ -18,7 +53,20 @@ const PopularCardContents = ({ data }) => {
       >
         人気記事
       </p>
-      <div>記事一覧</div>
+      <ul>
+        {postResults.map(postResult => {
+          return (
+            <li>
+              <Link to={postResult.slug}>
+                <p>
+                  {postResult.title} ({postResult.totalCount}views)
+                </p>
+              </Link>
+            </li>
+          )
+        })}
+      </ul>
+      {/* <div>記事一覧</div> */}
     </section>
   )
 
