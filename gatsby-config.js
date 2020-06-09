@@ -19,6 +19,14 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        // replace "UA-XXXXXXXXX-X" with your own Tracking ID
+        trackingId: "UA-168668807-1",
+        head: true,
+      },
+    },
+    {
       resolve: `gatsby-source-google-analytics-reporting-api`,
       options: {
         // 「サービス アカウント」のメールアドレス
@@ -33,14 +41,6 @@ module.exports = {
         startDate: `2020-06-01`,
       },
     },
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        // replace "UA-XXXXXXXXX-X" with your own Tracking ID
-        trackingId: "UA-168668807-1",
-      },
-    },
-
     {
       resolve: `gatsby-source-filesystem`,
       options: {
