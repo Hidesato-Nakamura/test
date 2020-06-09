@@ -56,8 +56,8 @@ const PopularCardContents = ({ data }) => {
       <ul>
         {postResults.map(postResult => {
           return (
-            <li>
-              <Link to={postResult.slug}>
+            <li key={postResult.slug}>
+              <Link to={`${postResult.slug}`}>
                 <p>
                   {postResult.title} ({postResult.totalCount}views)
                 </p>

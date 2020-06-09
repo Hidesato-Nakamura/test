@@ -3,15 +3,15 @@ import { Link } from "gatsby"
 
 const PageNation = () => {
   return (
-    <div class="pager">
-      <ul class="pagination">
-        <li class="pre">
+    <div className="pager">
+      <ul className="pagination">
+        <li className="pre">
           <Link to="/">
             <span>«</span>
           </Link>
         </li>
         <li>
-          <Link to="/" class="active">
+          <Link to="/" className="active">
             <span>1</span>
           </Link>
         </li>
@@ -35,8 +35,8 @@ const PageNation = () => {
             <span>5</span>
           </Link>
         </li>
-        <li class="next">
-          <Link href="#">
+        <li className="next">
+          <Link to="#">
             <span>»</span>
           </Link>
         </li>
