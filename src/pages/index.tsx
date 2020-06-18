@@ -3,12 +3,11 @@
 import React from "react"
 import { PageProps, Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
 
-import Card from "../components/card"
+import { MainCard, SubCard } from "../components/card"
 import PageNation from "../components/pagination"
 
 type Data = {
@@ -44,26 +43,23 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
       <SEO title="Home" />
       {/* <Link to="/admin/">login</Link> */}
       {/* <Bio /> */}
-      <h1>新着記事</h1>
-      {posts.map(({ node }) => {
-        return (
-          <article key={node.fields.slug} style={{ marginBottom: "40px" }}>
-            <h3
-              style={{
-                marginBottom: rhythm(1 / 4),
-              }}
-            >
-              <Card
-                title={node.frontmatter.title}
-                description={node.frontmatter.description}
-                date={node.frontmatter.date}
-                slug={node.fields.slug}
-                featuredImageSrc={node.frontmatter.featuredimage}
-              />
-            </h3>
+      {/* <h1>新着記事</h1>ß */}
+      {posts.map(({ node }, index) => {
+        return index == 0 ? (
+          <article key={node.fields.slug}>
+            <MainCard node={node} />
           </article>
-        )
+        ) : null
       })}
+      <div className="flex flex-wrap">
+        {posts.map(({ node }, index) => {
+          return index != 0 ? (
+            <article key={node.fields.slug} className="sub-card-block">
+              <SubCard node={node} />
+            </article>
+          ) : null
+        })}
+      </div>
       <PageNation />
     </Layout>
   )
@@ -80,19 +76,21 @@ export const pageQuery = graphql`
     }
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
-      limit: 5
+      limit: 16
     ) {
       edges {
         node {
           excerpt
+          html
           fields {
             slug
           }
           frontmatter {
-            date(formatString: "YY/MM/DD")
+            date(formatString: "MMMM DD. YYYY")
             title
             description
             featuredimage
+            tags
           }
         }
       }

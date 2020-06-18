@@ -2,6 +2,7 @@ import React from "react"
 import { kebabCase } from "lodash"
 import _ from "lodash"
 import { Link, graphql, StaticQuery } from "gatsby"
+import SideCardTemplate from "./sideCardTemplate"
 
 const categoryCardQuery = graphql`
   query categoryCardQuery {
@@ -58,31 +59,29 @@ const CategoryCardContents = ({ data }) => {
   // console.log(tagsList)
 
   const categoryCardContents = (
-    <section className="category-card">
-      <p
-        style={{
-          textAlign: `center`,
-          marginLeft: `auto`,
-          marginRight: `auto`,
-        }}
-      >
-        カテゴリー
-      </p>
-      <div>tags</div>
-      <ul>
-        {tagsList.map(
-          list => (
-            // list && list.length ? (
-            <li key={list.tag + `tag`}>
-              <Link to={`/tags/${kebabCase(list.tag)}/`}>
-                {list.tag}({`${list.totalCount}`})
+    <SideCardTemplate title="Tags">
+      <div className="category-card">
+        <ul>
+          {tagsList.map(
+            list => (
+              // list && list.length ? (
+              <Link
+                to={`/tags/${kebabCase(list.tag)}/`}
+                style={{ textDecoration: `none` }}
+              >
+                <li key={list.tag + `tag`}>
+                  <div>
+                    #{list.tag}
+                    {/* ({`${list.totalCount}`}) */}
+                  </div>
+                </li>
               </Link>
-            </li>
-          )
-          // ) : null
-        )}
-      </ul>
-    </section>
+            )
+            // ) : null
+          )}
+        </ul>
+      </div>
+    </SideCardTemplate>
   )
 
   return categoryCardContents

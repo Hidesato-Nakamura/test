@@ -11,3 +11,11 @@ date: 2020-06-02T09:16:39.445Z
 ---
 
 this is main text.
+
+**太字**
+
+```aa.js
+
+const test = ()=>{test}
+
+```

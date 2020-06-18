@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import PageNation from "../components/pagination"
-import Card from "../components/card"
+import { MainCard, SubCard } from "../components/card"
 
 import { rhythm } from "../utils/typography"
 
@@ -22,13 +22,7 @@ const BlogList = (data, pageContext, location) => {
                 marginBottom: rhythm(1 / 4),
               }}
             >
-              <Card
-                title={node.frontmatter.title}
-                description={node.frontmatter.description}
-                date={node.frontmatter.date}
-                slug={node.fields.slug}
-                featuredImageSrc={node.frontmatter.featuredimage}
-              />
+              <MainCard node={node} />
             </h3>
           </article>
         )
@@ -53,10 +47,11 @@ export const blogListQuery = graphql`
             slug
           }
           frontmatter {
-            date(formatString: "YY/MM/DD")
+            date(formatString: "MMMM DD. YYYY")
             title
             description
             featuredimage
+            tags
           }
         }
       }

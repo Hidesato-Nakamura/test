@@ -1,26 +1,28 @@
 import React from "react"
 import { Link } from "gatsby"
 
-const Card = ({ title, description, date, slug, featuredImageSrc }) => {
-  console.log(date)
+export const MainCard = ({ node }) => {
+  const frontmatter = node.frontmatter
+  const slug = node.fields.slug
+  const article = node.html
+  console.log(node)
   let card = (
     <Link to={slug} style={{ textDecoration: "none" }}>
-      <section className="card">
-        <div className="card-img-block">
-          <img className="card-img" src={featuredImageSrc} alt="" />
+      <section className="main-card flex">
+        <div className="card-img-block main">
+          <img src={frontmatter.featuredimage} alt="" />
         </div>
 
         <div className="card-content">
-          <h1 className="card-title">{title}</h1>
-          <p className="card-text">{description}</p>
-          <h5 className="card-date">{date}</h5>
+          <div className="tag flex">
+            {frontmatter.tags.map((tag, index) => {
+              return <div key={index}>#{tag}</div>
+            })}
+          </div>
+          <div className="title">{frontmatter.title}</div>
+          <div className="date">{frontmatter.date}</div>
+          <div className="text">{frontmatter.description}</div>
         </div>
-        {/* <div
-          style={{
-            clear: "both",
-            height: 0,
-          }}
-        ></div> */}
       </section>
     </Link>
   )
@@ -28,4 +30,28 @@ const Card = ({ title, description, date, slug, featuredImageSrc }) => {
   return card
 }
 
-export default Card
+export const SubCard = ({ node }) => {
+  const frontmatter = node.frontmatter
+  const slug = node.fields.slug
+  let card = (
+    <Link to={slug} style={{ textDecoration: "none" }}>
+      <section className="sub-card">
+        <div className="card-img-block">
+          <img src={frontmatter.featuredimage} alt="" />
+        </div>
+
+        <div className="card-content">
+          <div className="tag flex">
+            {frontmatter.tags.map((tag, index) => {
+              return <div key={index}>#{tag}</div>
+            })}
+          </div>
+          <div className="title">{frontmatter.title}</div>
+          <div className="date">{frontmatter.date}</div>
+          <div className="text">{frontmatter.description}</div>
+        </div>
+      </section>
+    </Link>
+  )
+  return card
+}

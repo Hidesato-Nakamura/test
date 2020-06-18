@@ -1,5 +1,6 @@
 import React from "react"
 import { Link, graphql, StaticQuery } from "gatsby"
+import SideCardTemplate from "./sideCardTemplate"
 
 const popularCardQuery = graphql`
   query popularCardQuery {
@@ -19,6 +20,7 @@ const popularCardQuery = graphql`
           }
           frontmatter {
             title
+            date(formatString: "MMMM DD. YYYY")
           }
         }
       }
@@ -39,6 +41,7 @@ const PopularCardContents = ({ data }) => {
         // console.log(`path=${edge.node.path}`)
         postResults.push({
           title: post.node.frontmatter.title,
+          date: post.node.frontmatter.date,
           slug: post.node.fields.slug,
           totalCount: edge.node.totalCount,
         })
@@ -47,27 +50,33 @@ const PopularCardContents = ({ data }) => {
   })
   console.log(postResults)
   const pc = (
-    <section className="popular-card">
-      <p
-        style={{ textAlign: `center`, marginLeft: `auto`, marginRight: `auto` }}
-      >
-        人気記事
-      </p>
-      <ul>
-        {postResults.map(postResult => {
-          return (
-            <li key={postResult.slug}>
-              <Link to={`${postResult.slug}`}>
-                <p>
-                  {postResult.title} ({postResult.totalCount}views)
-                </p>
+    <SideCardTemplate title="Ranking">
+      <div className="popular-card">
+        <img src="/images/uploads/30-Most-Important-Google-Ranking-Factors-A-Beginner-Should-Know-640x250-1.png"></img>
+        <ul>
+          {postResults.map((postResult, index) => {
+            return index < 5 ? (
+              <Link
+                to={`${postResult.slug}`}
+                style={{ textDecoration: `none` }}
+              >
+                <li key={postResult.slug}>
+                  <div className="rank">{index + 1}</div>
+                  <div className="article">
+                    {postResult.title}
+                    <div>
+                      {postResult.date}
+                      {postResult.totalCount}views
+                    </div>
+                  </div>
+                </li>
               </Link>
-            </li>
-          )
-        })}
-      </ul>
+            ) : null
+          })}
+        </ul>
+      </div>
       {/* <div>記事一覧</div> */}
-    </section>
+    </SideCardTemplate>
   )
 
   return pc
