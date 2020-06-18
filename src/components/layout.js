@@ -30,7 +30,8 @@ const Layout = ({ location, title, children }) => {
       </main>
 
       <footer>
-        <div>© {new Date().getFullYear()} footer</div>
+        {/* {new Date().getFullYear()}  */}
+        <div>AFFEXION.inc</div>
         {/* <a href="https://www.gatsbyjs.org">Gatsby</a> */}
       </footer>
     </div>
