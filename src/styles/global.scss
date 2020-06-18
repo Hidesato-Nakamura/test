@@ -41,6 +41,12 @@ footer {
 .flex-wrap {
   flex-wrap: wrap;
   justify-content: space-between;
+  &:after {
+    content: "";
+    display: block;
+    width: 31%;
+    height: 0;
+  }
 }
 
 .main-card {
@@ -260,14 +266,14 @@ $side-contents-margin: 20px;
   margin-right: auto;
   margin-left: auto;
   margin-top: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   img {
     margin-bottom: 10px;
   }
 }
 
 .profile-card {
-  @include side-card-content(90%);
+  @include side-card-content(80%);
   .bio {
     margin-bottom: 10px;
     .name {
@@ -292,7 +298,7 @@ $side-contents-margin: 20px;
 }
 
 .category-card {
-  @include side-card-content(90%);
+  @include side-card-content(80%);
 
   ul {
     display: flex;
@@ -302,7 +308,6 @@ $side-contents-margin: 20px;
       padding: 5px 10px 5px;
       background: #fd607c;
       div {
-        font-weight: 500;
         font-size: 14px;
         text-decoration: none;
         color: #fff;
@@ -312,7 +317,7 @@ $side-contents-margin: 20px;
 }
 
 .popular-card {
-  @include side-card-content(90%);
+  @include side-card-content(80%);
   ul {
     li {
       display: flex;
@@ -328,8 +333,49 @@ $side-contents-margin: 20px;
         margin-top: 0;
         font-weight: 500;
         font-size: 14px;
+        .details {
+          display: flex;
+          font-size: 12px;
+          margin-top: 5px;
+          .date {
+            margin-right: 10px;
+          }
+          .material-icons {
+            color: #0fd4ff;
+            margin-left: 10px;
+            size: 0.5;
+            margin: 0px;
+            padding: 0px;
+          }
+          .views {
+            color: #0fd4ff;
+            margin-left: 3px;
+          }
+        }
       }
     }
+  }
+}
+
+.pgn {
+  display: flex;
+  font-size: 14px;
+  justify-content: center;
+  .prev,
+  .next {
+    text-align: center;
+    margin: 0 10px 0;
+    border-radius: 3px;
+    width: 80px;
+    box-sizing: border-box;
+  }
+  .prev {
+    border: 1px solid #0fd4ff;
+    color: #0fd4ff;
+  }
+  .next {
+    border: 1px solid #fd607c;
+    color: #fd607c;
   }
 }
 

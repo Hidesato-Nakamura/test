@@ -64,9 +64,15 @@ const PopularCardContents = ({ data }) => {
                   <div className="rank">{index + 1}</div>
                   <div className="article">
                     {postResult.title}
-                    <div>
-                      {postResult.date}
-                      {postResult.totalCount}views
+                    <div className="details">
+                      <div className="date">{postResult.date}</div>
+                      <div
+                        className="material-icons"
+                        style={{ fontSize: `18px` }}
+                      >
+                        trending_up
+                      </div>
+                      <div className="views">{postResult.totalCount}</div>
                     </div>
                   </div>
                 </li>

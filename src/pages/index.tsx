@@ -60,7 +60,10 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
           ) : null
         })}
       </div>
-      <PageNation />
+      {/* <PageNation /> */}
+      <div className="pgn">
+        <div className="prev">Prev</div>1 of 5<div className="next">Next</div>
+      </div>
     </Layout>
   )
 }
