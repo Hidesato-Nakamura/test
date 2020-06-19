@@ -10,6 +10,8 @@ import { rhythm } from "../utils/typography"
 import { MainCard, SubCard } from "../components/card"
 import PageNation from "../components/pagination"
 
+import App from "../p5/p5"
+
 type Data = {
   site: {
     siteMetadata: {
@@ -41,6 +43,7 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title="Home" />
+      <App />
       {/* <Link to="/admin/">login</Link> */}
       {/* <Bio /> */}
       {/* <h1>新着記事</h1>ß */}
