@@ -1,3 +1,41 @@
+@function v($size, $viewport: 750) {
+  $rate: 100 / $viewport;
+  @return decimal-round($rate * $size * 1vw);
+}
+
+@function decimal-round($number, $digits: 2, $mode: round) {
+  $n: 1;
+  @if type-of($number) != number {
+    @warn '#{ $number } is not a number.';
+    @return $number;
+  }
+  @if type-of($digits) != number {
+    @warn '#{ $digits } is not a number.';
+    @return $number;
+  } @else if not unitless($digits) {
+    @warn '#{ $digits } has a unit.';
+    @return $number;
+  }
+  @if $digits > 0 {
+    @for $i from 1 through $digits {
+      $n: $n * 10;
+    }
+  }
+  @if $mode == round {
+    @return round($number * $n) / $n;
+  } @else if $mode == ceil {
+    @return ceil($number * $n) / $n;
+  } @else if $mode == floor {
+    @return floor($number * $n) / $n;
+  } @else {
+    @warn '#{ $mode } is undefined keyword.';
+    @return $number;
+  }
+}
+
+@function responsive-main() {
+}
+
 html {
   background-color: white;
 }
@@ -51,8 +89,51 @@ footer {
   }
 }
 
+.main-card,
+.sub-card {
+  .card-content {
+    padding: 20px;
+    .tag {
+      font-size: v(6);
+      color: #777;
+      height: 1.8em;
+      overflow: hidden;
+      div {
+        margin-right: 10px;
+      }
+    }
+    .title {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      font-size: v(10);
+      height: 3.6em;
+      line-height: 1.8em;
+      overflow: hidden;
+      font-weight: bold;
+      margin-bottom: 5px;
+      text-align: left;
+      color: #333;
+    }
+    .date {
+      font-size: v(6);
+      color: #111111;
+      height: 3em;
+    }
+    .text {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      color: #777;
+      font-size: v(8);
+      height: 5.4em;
+      line-height: 1.8em;
+      overflow: hidden;
+    }
+  }
+}
+
 .main-card {
-  height: 244px;
   margin-bottom: 30px;
   background: #ffffff;
   border-radius: 5px;
@@ -61,6 +142,7 @@ footer {
   .card-img-block {
     max-width: 60%;
     min-width: 60%;
+    width: 60%;
     border-radius: 5px;
     background-color: #ddd;
     position: relative;
@@ -76,48 +158,6 @@ footer {
       object-fit: cover;
     }
   }
-
-  .card-content {
-    max-width: 60%;
-    padding: 20px;
-    .tag {
-      font-size: 10px;
-      color: #777;
-      height: 1.8em;
-      overflow: hidden;
-      div {
-        margin-right: 10px;
-      }
-    }
-    .title {
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      font-size: 17px;
-      height: 3.6em;
-      line-height: 1.8em;
-      overflow: hidden;
-      font-weight: bold;
-      margin-bottom: 5px;
-      text-align: left;
-      color: #333;
-    }
-    .date {
-      font-size: 14px;
-      color: #111111;
-      height: 3em;
-    }
-    .text {
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      color: #777;
-      font-size: 12px;
-      height: 5.4em;
-      line-height: 1.8em;
-      overflow: hidden;
-    }
-  }
 }
 
 $sub-card-block-width: 31%;
@@ -128,15 +168,12 @@ $sub-card-block-width: 31%;
 }
 
 .sub-card {
-  height: 398px;
   margin-bottom: 30px;
   background: #fff;
   border-radius: 5px;
   box-shadow: 0.5px 0.5px 10px #ccc;
 
   .card-img-block {
-    max-width: 100%;
-    min-width: 100%;
     width: 100%;
     height: 163px;
     border-radius: 5px 5px 0 0;
@@ -152,47 +189,6 @@ $sub-card-block-width: 31%;
       width: 100%;
       height: 100%;
       object-fit: cover;
-    }
-  }
-
-  .card-content {
-    padding: 20px;
-    .tag {
-      font-size: 10px;
-      color: #777;
-      height: 1.8em;
-      overflow: hidden;
-      div {
-        margin-right: 10px;
-      }
-    }
-    .title {
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      font-size: 17px;
-      height: 3.6em;
-      line-height: 1.8em;
-      overflow: hidden;
-      font-weight: bold;
-      margin-bottom: 5px;
-      text-align: left;
-      color: #333;
-    }
-    .date {
-      font-size: 14px;
-      color: #111111;
-      height: 3em;
-    }
-    .text {
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      color: #777;
-      font-size: 12px;
-      height: 5.4em;
-      line-height: 1.8em;
-      overflow: hidden;
     }
   }
 }
