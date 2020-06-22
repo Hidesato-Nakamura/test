@@ -63,7 +63,7 @@ const PopularCardContents = ({ data }) => {
                 <li key={postResult.slug}>
                   <div className="rank">{index + 1}</div>
                   <div className="article">
-                    {postResult.title}
+                    <div className="article-titles">{postResult.title}</div>
                     <div className="details">
                       <div className="date">{postResult.date}</div>
                       <div
